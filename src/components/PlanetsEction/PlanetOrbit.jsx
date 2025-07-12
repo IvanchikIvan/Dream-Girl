@@ -1,4 +1,3 @@
-import React from "react";
 import { motion, useTransform } from "framer-motion";
 
 const PlanetOrbit = ({ Icon, size, color, angle, orbitRadius, mergeProgress }) => {
