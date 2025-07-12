@@ -1,0 +1,16 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+div.fp-watermark {
+  display: none;
+}
+
+.sample-slider .swiper-wrapper {
+  transition-timing-function: linear;
+}
+
+* {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}

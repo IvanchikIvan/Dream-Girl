@@ -1,0 +1,17 @@
+/* Пример стилей для анимации */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.text-animate {
+  animation: fadeIn 1s ease-out;
+}
+
+img {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
