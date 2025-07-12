@@ -33,7 +33,6 @@ function App() {
         ))}
       </Swiper>
 
-      {/* Кнопка "Назад" (не отображается на первом слайде) */}
       {activeIndex > 0 && (
         <button
           className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white text-base sm:text-lg px-3 sm:px-4 py-2 rounded focus:outline-none transition-colors"
@@ -43,7 +42,8 @@ function App() {
         </button>
       )}
 
-      {/* Кнопка "Вперёд" (не отображается на последнем слайде) */}
+
+      
       {activeIndex < slides.length - 1 && (
         <button
           className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white text-base sm:text-lg px-3 sm:px-4 py-2 rounded focus:outline-none transition-colors"
