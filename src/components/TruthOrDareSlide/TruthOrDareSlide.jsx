@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-// SVG-стрелочка
 const ArrowBack = ({ onClick }) => (
   <button
     onClick={onClick}
@@ -32,20 +31,17 @@ const ArrowBack = ({ onClick }) => (
 
 export default function TruthOrDareSlide() {
   const [slide, setSlide] = useState("question");
-  const [direction, setDirection] = useState(1); // 1: вниз, -1: вверх
+  const [direction, setDirection] = useState(1);
 
-  // Переход вперёд
   const goTo = (key) => {
     setDirection(1);
     setSlide(key);
   };
-  // Переход назад
   const goBack = () => {
     setDirection(-1);
     setSlide("question");
   };
 
-  // Контент каждого слайда
   const slideContent = {
     question: (
       <>
@@ -106,7 +102,6 @@ export default function TruthOrDareSlide() {
     ),
   };
 
-  // Анимации входа/выхода слайда
   const variants = {
     enter: (direction) => ({
       y: direction > 0 ? 100 : -100,
@@ -129,7 +124,6 @@ export default function TruthOrDareSlide() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Назад — только не на вопросе */}
       {slide !== "question" && <ArrowBack onClick={goBack} />}
 
       <AnimatePresence custom={direction} initial={false} mode="wait">

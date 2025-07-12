@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import {
   motion,
   useMotionValue,
@@ -70,7 +70,6 @@ const StarBackground = () => {
         />
       ))}
 
-      {/* Быстрые движущиеся звёзды */}
       {Array.from({ length: 50 }).map((_, i) => {
         const startX = Math.random() * 120 - 10;
         const startY = Math.random() * 120 - 10;
@@ -107,7 +106,6 @@ const StarBackground = () => {
         );
       })}
 
-      {/* Фоновые мерцающие точки */}
       {Array.from({ length: 300 }).map((_, i) => (
         <motion.div
           key={`bg-${i}`}
@@ -166,18 +164,17 @@ const OurUniverses = () => {
   const angleRight = useMotionValue(0);
 
   const [containerRef, containerSize] = useContainerSize();
-  const orbitRadius = containerSize.width ? containerSize.width * 0.18 : 250; // Дальше от центра!
+  const orbitRadius = containerSize.width ? containerSize.width * 0.18 : 250;
 
-  // Создаем интерполированные позиции для лунной планеты
 
   useEffect(() => {
     let animationFrame;
     const updateAngle = () => {
-      const time = performance.now() / 1000; // Время в секундах
-      const speedVariation = Math.sin(time) * 0.007 + 0.01; // Динамическое ускорение/замедление
+      const time = performance.now() / 1000;
+      const speedVariation = Math.sin(time) * 0.007 + 0.01;
 
       angleLeft.set(angleLeft.get() + speedVariation);
-      angleRight.set(angleRight.get() - speedVariation * 1.2); // Разные скорости
+      angleRight.set(angleRight.get() - speedVariation * 1.2);
 
       animationFrame = requestAnimationFrame(updateAngle);
     };
@@ -185,7 +182,6 @@ const OurUniverses = () => {
     return () => cancelAnimationFrame(animationFrame);
   }, [angleLeft, angleRight]);
 
-  // Вычисляем координаты планет с разной динамикой
   const moonX = useTransform(
     angleLeft,
     (a) => Math.cos(a) * (orbitRadius*0.6) - (orbitRadius*0.6) * 1.4
@@ -213,7 +209,6 @@ const OurUniverses = () => {
     ([progress, moon, smooth]) => progress * smooth + (1 - progress) * moon
   );
 
-  // Создаем интерполированные позиции для солнечной планеты
   const sunXFinal = useTransform(
     [mergeProgress, sunX, smoothX],
     ([progress, sun, smooth]) => progress * smooth + (1 - progress) * sun
@@ -223,7 +218,6 @@ const OurUniverses = () => {
     ([progress, sun, smooth]) => progress * smooth + (1 - progress) * sun
   );
 
-  // Анимация слияния
   useEffect(() => {
     if (isMerged) {
       animate(mergeProgress, 1, { duration: 1 });
@@ -232,7 +226,6 @@ const OurUniverses = () => {
     }
   }, [isMerged, mergeProgress]);
 
-  // Объединённая планета
   const mergedPlanetStyles = {
     scale: useTransform(mergeProgress, [0, 1], [0, 1]),
     opacity: useTransform(mergeProgress, [0, 0.2, 1], [0, 0, 1]),
@@ -240,7 +233,6 @@ const OurUniverses = () => {
     y: smoothY,
   };
 
-  // Проверка, находится ли курсор в центре
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -262,7 +254,6 @@ const OurUniverses = () => {
         ref={containerRef}
         className="relative w-full h-1/4 flex items-center justify-center"
       >
-        {/* Лунная планета (слева) */}
         <motion.div
           style={{
             x: moonXFinal,
@@ -274,7 +265,6 @@ const OurUniverses = () => {
           <img src={MoonIcon} alt="Moon" />
         </motion.div>
 
-        {/* Солнечная планета (справа) */}
         <motion.div
           style={{
             x: sunXFinal,
@@ -286,7 +276,6 @@ const OurUniverses = () => {
           <img src={SunIcon} alt="Sun" />
         </motion.div>
 
-        {/* Объединённая планета */}
         <motion.div
           style={{
             ...mergedPlanetStyles,

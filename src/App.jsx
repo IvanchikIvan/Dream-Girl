@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -13,7 +13,13 @@ function App() {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const slides = [<SectionIntro />, <PhotoWheel />, <OurUniverses />, <LoveReasonsWheel />, <TruthOrDareSlide />];
+  const slides = [
+    SectionIntro,
+    PhotoWheel,
+    OurUniverses,
+    LoveReasonsWheel,
+    TruthOrDareSlide,
+  ];
 
   return (
     <div className="relative">
@@ -28,12 +34,13 @@ function App() {
         speed={800}
         className="h-screen"
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>{slide}</SwiperSlide>
+        {slides.map((Slide, index) => (
+          <SwiperSlide key={index}>
+            <Slide />
+          </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Кнопка "Назад" (не отображается на первом слайде) */}
       {activeIndex > 0 && (
         <button
           className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white text-base sm:text-lg px-3 sm:px-4 py-2 rounded focus:outline-none transition-colors"
@@ -43,7 +50,8 @@ function App() {
         </button>
       )}
 
-      {/* Кнопка "Вперёд" (не отображается на последнем слайде) */}
+
+      
       {activeIndex < slides.length - 1 && (
         <button
           className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white text-base sm:text-lg px-3 sm:px-4 py-2 rounded focus:outline-none transition-colors"
