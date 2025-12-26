@@ -92,12 +92,12 @@ export default function TruthOrDareSlide() {
     ),
     truth: (
       <h1 className="text-2xl md:text-3xl font-bold drop-shadow-lg text-center px-4">
-        Получилось ли у меня хоть чуть-чуть исправиться?
+        Как тебе этот год..?
       </h1>
     ),
     dare: (
       <h1 className="text-2xl md:text-3xl font-bold drop-shadow-lg text-center px-4">
-        Отправь три милых кружка с котёнком
+        Выбери: Ещё один год тебе или два другому?
       </h1>
     ),
   };
