@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useEffect } from "react";
 import img1 from "../assets/carousel/1.jpg";
 import img2 from "../assets/carousel/2.jpg";
 import img3 from "../assets/carousel/3.jpg";

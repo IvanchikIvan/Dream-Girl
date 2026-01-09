@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -13,7 +13,13 @@ function App() {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const slides = [<SectionIntro />, <PhotoWheel />, <OurUniverses />, <LoveReasonsWheel />, <TruthOrDareSlide />];
+  const slides = [
+    SectionIntro,
+    PhotoWheel,
+    OurUniverses,
+    LoveReasonsWheel,
+    TruthOrDareSlide,
+  ];
 
   return (
     <div className="relative">
@@ -28,8 +34,10 @@ function App() {
         speed={800}
         className="h-screen"
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>{slide}</SwiperSlide>
+        {slides.map((Slide, index) => (
+          <SwiperSlide key={index}>
+            <Slide />
+          </SwiperSlide>
         ))}
       </Swiper>
 
